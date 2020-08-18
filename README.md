@@ -2,9 +2,9 @@
 Kafka Monitoring
 
 ## Job Name
- - zookeeper-jmx-export
- - kafka-jmx-export
- - kafka-export
+ - zookeeper-jmx-exporter
+ - kafka-jmx-exporter
+ - kafka-exporter
 
 ## Datasource
  - Prometheus
