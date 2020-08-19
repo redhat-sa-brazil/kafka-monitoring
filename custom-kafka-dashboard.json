@@ -244,6 +244,8 @@
               "value": "null"
             }
           ],
+          "max": 3,
+          "min": 0,
           "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
@@ -253,8 +255,16 @@
                 "value": null
               },
               {
-                "color": "green",
+                "color": "#EAB839",
                 "value": 1
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 2
+              },
+              {
+                "color": "green",
+                "value": 3
               }
             ]
           },
@@ -320,7 +330,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgb(255, 255, 255)",
+                "color": "green",
                 "value": null
               },
               {
@@ -394,11 +404,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgb(255, 255, 255)",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "#F2495C",
+                "color": "yellow",
                 "value": 1
               },
               {
@@ -1505,6 +1515,7 @@
         "allValue": null,
         "current": {
           "selected": true,
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1563,5 +1574,5 @@
   "timezone": "browser",
   "title": "Custom Kafka Exporter",
   "uid": "jwPKIsniz2122",
-  "version": 18
+  "version": 22
 }
