@@ -579,7 +579,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(process_cpu_seconds_total{job=\"kafka\"}[1m])",
+          "expr": "rate(process_cpu_seconds_total{job=\"kafka-jmx-exporter\"}[1m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -673,7 +673,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(area)(jvm_memory_bytes_used{job=\"kafka\"})",
+          "expr": "sum without(area)(jvm_memory_bytes_used{job=\"kafka-jmx-exporter\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -767,7 +767,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(gc)(rate(jvm_gc_collection_seconds_sum{job=\"kafka\"}[5m]))",
+          "expr": "sum without(gc)(rate(jvm_gc_collection_seconds_sum{job=\"kafka-jmx-exporter\"}[5m]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -861,7 +861,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{job=\"kafka\",topic!=\"\"}[5m]))  ",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{job=\"kafka-jmx-exporter\",topic!=\"\"}[5m]))  ",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -955,7 +955,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalproducerequests_total{job=\"kafka\",topic!=\"\"}[5m]))  ",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_totalproducerequests_total{job=\"kafka-jmx-exporter\",topic!=\"\"}[5m]))  ",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1049,7 +1049,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesin_total{job=\"kafka\",topic!=\"\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesin_total{job=\"kafka-jmx-exporter\",topic!=\"\"}[5m]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -1143,7 +1143,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesout_total{job=\"kafka\",topic!=\"\"}[5m]))",
+          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesout_total{job=\"kafka-jmx-exporter\",topic!=\"\"}[5m]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
