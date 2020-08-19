@@ -5,6 +5,7 @@ Kafka Monitoring
  - zookeeper-jmx-exporter
  - kafka-jmx-exporter
  - kafka-exporter
+ - node-exporter
 
 ## Datasource
  - Prometheus
