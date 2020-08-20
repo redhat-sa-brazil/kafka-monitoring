@@ -1,0 +1,28 @@
+global:
+ scrape_interval: 10s
+ evaluation_interval: 10s
+scrape_configs:
+ - job_name: 'kafka-jmx-exporter' # Kafka Server Metrics
+   static_configs:
+    - targets:
+      - 192.168.15.198:8080   # Kafka 1
+      - 192.168.15.199:8080   # Kafka 2
+      - 192.168.15.200:8080   # Kafka 3
+ - job_name: 'kafka-connect-jmx-exporter' # For Kafka Conect only
+   static_configs:
+     - targets:
+       - 192.168.15.70:7070
+ - job_name: 'kafka-producer-consumer-jmx-exporter' # For producer and Consumer
+   static_configs:
+     - targets:
+       - 192.168.15.70:7080
+ - job_name: 'kafka-streams-jmx-exporter' # For kafka streams only
+   static_configs:
+     - targets:
+       - 192.168.15.70:7090
+ - job_name: 'zookeeper-jmx-exporter'
+   static_configs:
+     - targets:
+       - 192.168.15.201:8081
+       - 192.168.15.202:8081
+       - 192.168.15.203:8081
