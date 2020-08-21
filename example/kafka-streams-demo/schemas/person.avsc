@@ -1,0 +1,14 @@
+{
+	"type": "record",
+	"name": "Person",
+	"namespace": "com.redhat.workshop.kafka",
+	"fields": [{
+			"name": "name",
+			"type": "string"
+		},
+		{
+			"name": "country",
+			"type": "string"
+		}
+	]
+}

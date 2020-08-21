@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.redhat.consulting.workshop.kafka</groupId>
+	<artifactId>kafka-streams-demo</artifactId>
+	<version>1.0</version>
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<kafka.version>2.4.0</kafka.version>
+		<slf4j.version>1.7.30</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<avro.version>1.9.1</avro.version>
+		<jackson.version>2.10.4</jackson.version>
+		<apicurio.registry.version>1.2.2.Final</apicurio.registry.version>
+		<confluent.version>5.3.0</confluent.version>
+
+	</properties>
+
+	<dependencies>
+
+		<!-- Apache Kafka dependencies -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+			<version>${kafka.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.apicurio</groupId>
+			<artifactId>apicurio-registry-utils-serde</artifactId>
+			<version>${apicurio.registry.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>${confluent.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>${confluent.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>${avro.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.apicurio</groupId>
+			<artifactId>apicurio-registry-utils-serde</artifactId>
+			<version>${apicurio.registry.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.apicurio</groupId>
+				<artifactId>apicurio-registry-maven-plugin</artifactId>
+				<version>${apicurio.registry.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>register</goal>
+						</goals>
+						<configuration>
+							<registryUrl>http://service-registry-kafkaproject.apps.rls-5bc2.open.redhat.com</registryUrl>
+							<artifactType>AVRO</artifactType>
+							<artifacts>
+								<schema1>${project.basedir}/schemas/person.avsc</schema1>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
