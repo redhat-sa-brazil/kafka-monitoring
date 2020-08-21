@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": 11285,
   "graphTooltip": 0,
-  "id": 23,
-  "iteration": 1597873308961,
+  "id": 1,
+  "iteration": 1597972851608,
   "links": [],
   "panels": [
     {
@@ -73,7 +73,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "count(kafka_topic_partitions{topic=~\"$topic\"})",
@@ -142,7 +142,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_topic_partitions{topic=~\"$topic\"})",
@@ -211,7 +211,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_topic_partition_replicas{topic=~\"$topic\"})",
@@ -292,7 +292,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "count(kafka_server_replicamanager_leadercount > 0)",
@@ -375,7 +375,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_topic_partition_under_replicated_partition{topic=~\"$topic\"})",
@@ -449,7 +449,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_cluster_partition_underminisr{topic=~\"$topic\"})",
@@ -525,7 +525,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_controller_kafkacontroller_activecontrollercount)",
@@ -603,7 +603,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_cluster_partition_atminisr{topic=~\"$topic\"})",
@@ -674,7 +674,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "sum(kafka_topic_partition_in_sync_replica{topic=~\"$topic\"})",
@@ -747,7 +747,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
           "expr": "count(kafka_topic_partition_leader_is_preferred{topic=~\"$topic\"}<1)",
@@ -803,7 +803,7 @@
       "nullPointMode": "connected",
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -903,7 +903,7 @@
       "nullPointMode": "connected",
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1003,7 +1003,7 @@
       "nullPointMode": "connected",
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1065,7 +1065,7 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
@@ -1088,19 +1088,19 @@
       "id": 38,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
-        "current": false,
+        "avg": false,
+        "current": true,
         "max": false,
         "min": false,
         "show": true,
         "total": false,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1111,11 +1111,17 @@
       "targets": [
         {
           "expr": "avg by (consumergroup,topic) (kafka_consumergroup_lag{consumergroup=~\"$consumergroup\",topic=~\"$topic\"})",
-          "hide": false,
+          "hide": true,
           "instant": false,
           "interval": "",
           "legendFormat": "Group:  {{ consumergroup }} -  Topic:  {{ topic }}",
           "refId": "A"
+        },
+        {
+          "expr": "sum(kafka_consumergroup_lag) by (consumergroup) > 50",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -1196,7 +1202,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1224,7 +1230,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Lab per Partition",
+      "title": "Lag per Partition",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1269,8 +1275,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "unit": "bytes"
+          "custom": {}
         },
         "overrides": []
       },
@@ -1299,7 +1304,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1452,9 +1457,19 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null
+            "align": null,
+            "displayMode": "color-text"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 1,
+              "value": ""
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1464,7 +1479,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 50
               }
             ]
           }
@@ -1479,6 +1494,30 @@
               {
                 "id": "custom.width",
                 "value": null
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "lag"
               }
             ]
           }
@@ -1497,10 +1536,10 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.1.4",
       "targets": [
         {
-          "expr": "sum(kafka_consumergroup_lag{consumergroup=~\"$consumergroup\",topic=~\"$topic\"}) by (consumergroup,partition,topic)",
+          "expr": "sum(kafka_consumergroup_lag{consumergroup=~\"$consumergroup\",topic=~\"$topic\"}) by (consumergroup,topic) > 50",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1762,13 +1801,141 @@
       "title": "Oldest Offsets",
       "transform": "table",
       "type": "table-old"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 6,
+        "y": 59
+      },
+      "hiddenSeries": false,
+      "id": 44,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pluginVersion": "7.1.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(process_cpu_seconds_total{job=\"node-exporter\"}[5m])",
+          "hide": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "cpu {{instance}}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(node_memory_MemAvailable_bytes{job=\"node-exporter\"}[5m])",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "mem {{instance}}",
+          "refId": "B"
+        },
+        {
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"node-exporter\"}[5m])) * 100)",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "cpu {{instance}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Panel Title",
+      "tooltip": {
+        "shared": false,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "series",
+        "name": null,
+        "show": true,
+        "values": [
+          "total"
+        ]
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "5s",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [
-    "Strimzi",
     "Kafka",
     "Kafka Exporter"
   ],
@@ -1777,8 +1944,10 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -1805,8 +1974,10 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "All",
+          "selected": true,
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -1833,7 +2004,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1864,5 +2035,5 @@
   "timezone": "browser",
   "title": "New Custom Kafka Exporter",
   "uid": "jwPKIsniz2122112",
-  "version": 34
+  "version": 7
 }
