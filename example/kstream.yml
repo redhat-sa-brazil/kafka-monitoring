@@ -1,0 +1,31 @@
+lowercaseOutputName: true
+rules:
+- pattern: kafka.streams<type=stream-thread-metrics, thread-id=(.+)><>(.+):\w*
+  name: kafka_streams_$2_$3
+  type: GAUGE
+
+
+- pattern: kafka.streams<type=stream-metrics, client-id=(.+)><>(.+):\w*
+  name: kafka_streams_$2
+  type: GAUGE
+
+- pattern: kafka.streams<type=stream-task-metrics, thread-id=(.+)><>(.+):\w*
+  name: kafka_streams_$2
+  type: GAUGE
+
+- pattern: kafka.streams<type=stream-processor-node-metrics, thread-id=(.+), task-id=(.+),processor-node-id=(.+)><>(.+):\w*
+  name: kafka_streams_$2_$3_$4_$5_$6_$7_$8_$9
+  type: GAUGE
+
+- pattern: kafka.streams<type=stream-state-metrics, thread-id=(.+), task-id=(.+),(.+)=(.+),(.+)=(.+)><>(.+):\w*
+  name: kafka_streams_$2_$3_$4_$5_$6_$7_$8_$9
+  type: GAUGE
+
+- pattern: kafka.streams:type=stream-state-metrics,thread-id=(.+),task-id=(.+),(.+)=(.+)
+  name: kafka_streams_$2_$3_$4_$5_$6_$7_$8_$9
+  type: GAUGE
+
+- pattern: kafka.streams:type=stream-record-cache-metrics,thread-id=(.+),task-id=(.+),record-cache-id=(.+)
+  name: kafka_streams_$2_$3_$4_$5_$6_$7_$8_$9
+  type: GAUGE
+  
