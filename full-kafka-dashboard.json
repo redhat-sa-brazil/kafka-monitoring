@@ -15,11 +15,11 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 6,
   "links": [],
   "panels": [
     {
-      "collapsed": false,
+      "collapsed": true,
       "datasource": null,
       "gridPos": {
         "h": 1,
@@ -28,109 +28,855 @@
         "y": 0
       },
       "id": 62,
-      "panels": [],
-      "title": "Kafka Streams",
-      "type": "row"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [
-            {
-              "from": "",
-              "id": 0,
-              "text": "UP",
-              "to": "",
-              "type": 1,
-              "value": "1"
+      "panels": [
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null
+              },
+              "mappings": [
+                {
+                  "from": "",
+                  "id": 0,
+                  "text": "UP",
+                  "to": "",
+                  "type": 1,
+                  "value": "1"
+                },
+                {
+                  "from": "",
+                  "id": 1,
+                  "text": "DOWN",
+                  "to": "",
+                  "type": 1,
+                  "value": "0"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 0
+                  },
+                  {
+                    "color": "green",
+                    "value": 1
+                  }
+                ]
+              }
             },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "custom.displayMode",
+                    "value": "color-background"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": []
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 21,
+            "x": 0,
+            "y": 1
+          },
+          "id": 60,
+          "options": {
+            "displayMode": "basic",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "7.1.3",
+          "targets": [
             {
-              "from": "",
-              "id": 1,
-              "text": "DOWN",
-              "to": "",
-              "type": 1,
-              "value": "0"
+              "expr": "up{job=\"kafka-streams-jmx-exporter\"}",
+              "format": "time_series",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{ instance }}",
+              "refId": "A"
             }
           ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 0
-              },
-              {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          }
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Kafka Streams Status",
+          "type": "bargauge"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value"
-            },
-            "properties": [
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value"
-            },
-            "properties": []
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 12,
-        "x": 0,
-        "y": 1
-      },
-      "id": 60,
-      "options": {
-        "displayMode": "basic",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
-      },
-      "pluginVersion": "7.1.4",
-      "targets": [
         {
-          "expr": "up{job=\"kafka-streams-jmx-exporter\"}",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{ instance }}",
-          "refId": "A"
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "0",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 4,
+            "x": 0,
+            "y": 5
+          },
+          "id": 63,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.1.3",
+          "targets": [
+            {
+              "expr": "kafka_streams_commit_total",
+              "format": "time_series",
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "title": "Commit Total",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 16,
+            "x": 4,
+            "y": 5
+          },
+          "hiddenSeries": false,
+          "id": 68,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.3",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kafka_streams_commit_latency_avg",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}}",
+              "metric": "",
+              "refId": "A",
+              "step": 4
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Commit Latency Avg",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:462",
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:463",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "0",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 4,
+            "x": 20,
+            "y": 5
+          },
+          "id": 66,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.1.3",
+          "targets": [
+            {
+              "expr": "kafka_streams_task_created_total",
+              "format": "time_series",
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "title": "Created Total",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "0",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 4,
+            "x": 0,
+            "y": 12
+          },
+          "id": 64,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.1.3",
+          "targets": [
+            {
+              "expr": "kafka_streams_poll_total",
+              "format": "time_series",
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "title": "Poll Total",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "0",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 4,
+            "x": 4,
+            "y": 12
+          },
+          "id": 67,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.1.3",
+          "targets": [
+            {
+              "expr": "kafka_streams_poll_latency_max",
+              "format": "time_series",
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "title": "Poll Latency Max",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 16,
+            "x": 8,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 69,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.3",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kafka_streams_poll_rate",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}}",
+              "metric": "",
+              "refId": "A",
+              "step": 4
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Poll Rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:462",
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:463",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "0",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 4,
+            "x": 0,
+            "y": 19
+          },
+          "id": 65,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.1.3",
+          "targets": [
+            {
+              "expr": "kafka_streams_process_total",
+              "format": "time_series",
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "title": "Process Total",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 10,
+            "x": 4,
+            "y": 19
+          },
+          "hiddenSeries": false,
+          "id": 70,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.3",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kafka_streams_process_latency_avg",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}}",
+              "metric": "",
+              "refId": "A",
+              "step": 4
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Process Latency Avg",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:462",
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:463",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 10,
+            "x": 14,
+            "y": 19
+          },
+          "hiddenSeries": false,
+          "id": 71,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pluginVersion": "7.1.3",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kafka_streams_process_latency_avg",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "{{instance}}",
+              "metric": "",
+              "refId": "A",
+              "step": 4
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Process Rate ",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:462",
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:463",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Kafka Streams Status",
-      "type": "bargauge"
+      "title": "Kafka Streams",
+      "type": "row"
     },
     {
       "collapsed": false,
@@ -139,7 +885,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 1
       },
       "id": 44,
       "panels": [],
@@ -179,7 +925,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 6
+        "y": 2
       },
       "id": 26,
       "interval": null,
@@ -199,7 +945,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "count (rate(kafka_consumer_connection_count{job=\"kafka-producer-consumer-jmx-exporter\"}[1m]))",
@@ -284,7 +1030,7 @@
         "h": 14,
         "w": 7,
         "x": 4,
-        "y": 6
+        "y": 2
       },
       "id": 58,
       "options": {
@@ -299,7 +1045,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "up{job=\"kafka-producer-consumer-jmx-exporter\"}",
@@ -323,8 +1069,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -334,7 +1079,7 @@
         "h": 7,
         "w": 13,
         "x": 11,
-        "y": 6
+        "y": 2
       },
       "hiddenSeries": false,
       "id": 47,
@@ -352,7 +1097,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": true,
       "renderer": "flot",
@@ -460,7 +1205,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 13
+        "y": 9
       },
       "id": 46,
       "interval": null,
@@ -480,7 +1225,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "count (rate(kafka_producer_connection_count{job=\"kafka-producer-consumer-jmx-exporter\"}[1m]))",
@@ -504,8 +1249,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -515,7 +1259,7 @@
         "h": 7,
         "w": 7,
         "x": 11,
-        "y": 13
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 49,
@@ -533,7 +1277,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -603,8 +1347,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -614,7 +1357,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 13
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 48,
@@ -632,7 +1375,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -702,7 +1445,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 16
       },
       "id": 33,
       "panels": [],
@@ -755,7 +1498,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 21
+        "y": 17
       },
       "id": 1,
       "interval": null,
@@ -775,7 +1518,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "count(kafka_server_replicamanager_leadercount{job=\"kafka-jmx-exporter\"} > 0) by (job)",
@@ -828,7 +1571,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 21
+        "y": 17
       },
       "id": 3,
       "interval": null,
@@ -848,7 +1591,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(kafka_controller_kafkacontroller_activecontrollercount{job=\"kafka-jmx-exporter\"}) by (job)",
@@ -901,7 +1644,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 21
+        "y": 17
       },
       "id": 9,
       "interval": null,
@@ -921,7 +1664,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(kafka_controller_controllerstats_uncleanleaderelections_total{job=\"kafka-jmx-exporter\"}) by (job)",
@@ -1002,7 +1745,7 @@
         "h": 10,
         "w": 7,
         "x": 9,
-        "y": 21
+        "y": 17
       },
       "id": 56,
       "options": {
@@ -1017,7 +1760,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "up{job=\"kafka-jmx-exporter\"}",
@@ -1041,8 +1784,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1052,7 +1794,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 21
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 11,
@@ -1070,7 +1812,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1160,7 +1902,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 26
+        "y": 22
       },
       "id": 4,
       "interval": null,
@@ -1250,7 +1992,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 26
+        "y": 22
       },
       "id": 6,
       "interval": null,
@@ -1339,7 +2081,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 26
+        "y": 22
       },
       "id": 5,
       "interval": null,
@@ -1409,8 +2151,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1420,7 +2161,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 26
+        "y": 22
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1438,7 +2179,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1518,7 +2259,7 @@
         "h": 12,
         "w": 16,
         "x": 0,
-        "y": 31
+        "y": 27
       },
       "hiddenSeries": false,
       "id": 51,
@@ -1537,7 +2278,7 @@
       "linewidth": 2,
       "nullPointMode": "connected",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1615,8 +2356,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1626,7 +2366,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 31
+        "y": 27
       },
       "hiddenSeries": false,
       "id": 8,
@@ -1644,7 +2384,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1714,8 +2454,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1725,7 +2464,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 36
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 10,
@@ -1743,7 +2482,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1823,7 +2562,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 41
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 42,
@@ -1840,7 +2579,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1905,8 +2644,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1916,7 +2654,7 @@
         "h": 13,
         "w": 16,
         "x": 0,
-        "y": 43
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 13,
@@ -1935,7 +2673,7 @@
       "links": [],
       "nullPointMode": "connected",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2020,25 +2758,7 @@
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 2
-              },
-              {
-                "color": "green",
-                "value": 3
-              }
-            ]
-          }
+          "custom": {}
         },
         "overrides": []
       },
@@ -2048,7 +2768,7 @@
         "h": 10,
         "w": 8,
         "x": 16,
-        "y": 46
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 53,
@@ -2067,7 +2787,7 @@
       "linewidth": 1,
       "nullPointMode": "connected",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2133,7 +2853,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 52
       },
       "id": 34,
       "panels": [],
@@ -2182,7 +2902,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 57
+        "y": 53
       },
       "id": 15,
       "interval": null,
@@ -2202,7 +2922,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "count(zookeeper_quorumsize)",
@@ -2251,7 +2971,7 @@
         "h": 7,
         "w": 4,
         "x": 4,
-        "y": 57
+        "y": 53
       },
       "id": 16,
       "interval": null,
@@ -2271,7 +2991,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(zookeeper_numaliveconnections)",
@@ -2296,23 +3016,7 @@
       "decimals": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
+          "custom": {}
         },
         "overrides": []
       },
@@ -2322,7 +3026,7 @@
         "h": 18,
         "w": 16,
         "x": 8,
-        "y": 57
+        "y": 53
       },
       "hiddenSeries": false,
       "id": 25,
@@ -2345,7 +3049,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2480,7 +3184,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 64
+        "y": 60
       },
       "id": 17,
       "interval": null,
@@ -2500,7 +3204,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(zookeeper_inmemorydatatree_watchcount)",
@@ -2557,7 +3261,7 @@
         "h": 7,
         "w": 4,
         "x": 4,
-        "y": 64
+        "y": 60
       },
       "id": 18,
       "interval": null,
@@ -2577,7 +3281,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "avg(zookeeper_inmemorydatatree_nodecount)",
@@ -2662,7 +3366,7 @@
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 71
+        "y": 67
       },
       "id": 57,
       "options": {
@@ -2677,7 +3381,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "up{job=\"zookeeper-jmx-exporter\"}",
@@ -2701,8 +3405,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -2712,7 +3415,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 75
+        "y": 71
       },
       "hiddenSeries": false,
       "id": 20,
@@ -2731,7 +3434,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2801,19 +3504,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "short"
+          "custom": {}
         },
         "overrides": []
       },
@@ -2823,7 +3514,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 75
+        "y": 71
       },
       "hiddenSeries": false,
       "id": 19,
@@ -2841,7 +3532,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2911,8 +3602,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -2922,7 +3612,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 84
+        "y": 80
       },
       "hiddenSeries": false,
       "id": 21,
@@ -2940,7 +3630,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3011,8 +3701,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -3022,7 +3711,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 84
+        "y": 80
       },
       "hiddenSeries": false,
       "id": 22,
@@ -3040,7 +3729,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3109,7 +3798,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 93
+        "y": 89
       },
       "id": 35,
       "panels": [],
@@ -3145,7 +3834,7 @@
         "h": 6,
         "w": 3,
         "x": 0,
-        "y": 94
+        "y": 90
       },
       "id": 37,
       "interval": null,
@@ -3276,7 +3965,7 @@
         "h": 6,
         "w": 7,
         "x": 3,
-        "y": 94
+        "y": 90
       },
       "id": 59,
       "options": {
@@ -3291,7 +3980,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "up{job=\"kafka-connect-jmx-exporter\"}",
@@ -3315,8 +4004,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -3326,7 +4014,7 @@
         "h": 8,
         "w": 14,
         "x": 10,
-        "y": 94
+        "y": 90
       },
       "hiddenSeries": false,
       "id": 30,
@@ -3344,7 +4032,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3434,7 +4122,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 100
+        "y": 96
       },
       "id": 38,
       "interval": null,
@@ -3504,8 +4192,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -3515,7 +4202,7 @@
         "h": 8,
         "w": 7,
         "x": 3,
-        "y": 100
+        "y": 96
       },
       "hiddenSeries": false,
       "id": 39,
@@ -3533,7 +4220,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3629,8 +4316,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -3640,7 +4326,7 @@
         "h": 7,
         "w": 7,
         "x": 10,
-        "y": 102
+        "y": 98
       },
       "hiddenSeries": false,
       "id": 32,
@@ -3658,7 +4344,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3728,8 +4414,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -3739,7 +4424,7 @@
         "h": 7,
         "w": 7,
         "x": 17,
-        "y": 102
+        "y": 98
       },
       "hiddenSeries": false,
       "id": 31,
@@ -3757,7 +4442,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3847,7 +4532,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 105
+        "y": 101
       },
       "id": 45,
       "interval": null,
@@ -3917,8 +4602,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -3928,7 +4612,7 @@
         "h": 7,
         "w": 7,
         "x": 3,
-        "y": 108
+        "y": 104
       },
       "hiddenSeries": false,
       "id": 40,
@@ -3946,7 +4630,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -4024,8 +4708,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -4035,7 +4718,7 @@
         "h": 6,
         "w": 7,
         "x": 10,
-        "y": 109
+        "y": 105
       },
       "hiddenSeries": false,
       "id": 28,
@@ -4053,7 +4736,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -4124,8 +4807,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -4135,7 +4817,7 @@
         "h": 6,
         "w": 7,
         "x": 17,
-        "y": 109
+        "y": 105
       },
       "hiddenSeries": false,
       "id": 29,
@@ -4153,7 +4835,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -4243,7 +4925,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 110
+        "y": 106
       },
       "id": 27,
       "interval": null,
@@ -4349,7 +5031,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "AMQ Streams Dashboard",
-  "uid": "vi9qV4NGk",
-  "version": 54
+  "title": "AMQ Streams Dashboard-tmp",
+  "uid": "JgA3HFHMk",
+  "version": 5
 }
