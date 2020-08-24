@@ -584,6 +584,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:2874",
           "alias": "/.*Producers/",
           "transform": "negative-Y"
         }
@@ -628,7 +629,115 @@
           "$$hashKey": "object:996",
           "decimals": null,
           "format": "short",
-          "label": "Conn",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:997",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "hiddenSeries": false,
+      "id": 83,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.3",
+      "pointradius": 2,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:2916",
+          "alias": "/.*Producers/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "expr": "sum (kafka_cluster_partition_underminisr{job=~\"kafka-jmx-exporter\",topic=~\"^[^_].*\"}) by (topic)",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{topic}}",
+          "metric": "",
+          "refId": "A",
+          "step": 4
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "kafka_cluster_partition_underminisr",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:996",
+          "decimals": null,
+          "format": "short",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -656,7 +765,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 22
       },
       "id": 62,
       "panels": [],
@@ -732,7 +841,7 @@
         "h": 7,
         "w": 3,
         "x": 0,
-        "y": 16
+        "y": 23
       },
       "id": 60,
       "options": {
@@ -796,7 +905,7 @@
         "h": 7,
         "w": 3,
         "x": 3,
-        "y": 16
+        "y": 23
       },
       "id": 66,
       "interval": null,
@@ -865,7 +974,7 @@
         "h": 7,
         "w": 3,
         "x": 6,
-        "y": 16
+        "y": 23
       },
       "id": 67,
       "interval": null,
@@ -919,7 +1028,7 @@
         "h": 7,
         "w": 8,
         "x": 9,
-        "y": 16
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 68,
@@ -1019,7 +1128,7 @@
         "h": 7,
         "w": 7,
         "x": 17,
-        "y": 16
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 71,
@@ -1134,7 +1243,7 @@
         "h": 7,
         "w": 3,
         "x": 0,
-        "y": 23
+        "y": 30
       },
       "id": 63,
       "interval": null,
@@ -1203,7 +1312,7 @@
         "h": 7,
         "w": 3,
         "x": 3,
-        "y": 23
+        "y": 30
       },
       "id": 64,
       "interval": null,
@@ -1272,7 +1381,7 @@
         "h": 7,
         "w": 3,
         "x": 6,
-        "y": 23
+        "y": 30
       },
       "id": 65,
       "interval": null,
@@ -1326,7 +1435,7 @@
         "h": 7,
         "w": 8,
         "x": 9,
-        "y": 23
+        "y": 30
       },
       "hiddenSeries": false,
       "id": 70,
@@ -1426,7 +1535,7 @@
         "h": 7,
         "w": 7,
         "x": 17,
-        "y": 23
+        "y": 30
       },
       "hiddenSeries": false,
       "id": 69,
@@ -1515,7 +1624,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 37
       },
       "id": 44,
       "panels": [],
@@ -1555,7 +1664,7 @@
         "h": 7,
         "w": 3,
         "x": 0,
-        "y": 31
+        "y": 38
       },
       "id": 26,
       "interval": null,
@@ -1624,7 +1733,7 @@
         "h": 7,
         "w": 3,
         "x": 3,
-        "y": 31
+        "y": 38
       },
       "id": 46,
       "interval": null,
@@ -1729,7 +1838,7 @@
         "h": 7,
         "w": 3,
         "x": 6,
-        "y": 31
+        "y": 38
       },
       "id": 58,
       "options": {
@@ -1829,7 +1938,7 @@
         "h": 7,
         "w": 3,
         "x": 9,
-        "y": 31
+        "y": 38
       },
       "id": 74,
       "options": {
@@ -1878,7 +1987,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 38
       },
       "hiddenSeries": false,
       "id": 47,
@@ -1991,7 +2100,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 38
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 49,
@@ -2091,7 +2200,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 38
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 73,
@@ -2192,7 +2301,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 38
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 48,
@@ -2293,7 +2402,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 38
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 72,
@@ -2383,7 +2492,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 52
       },
       "id": 33,
       "panels": [],
@@ -2436,7 +2545,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 46
+        "y": 53
       },
       "id": 1,
       "interval": null,
@@ -2509,7 +2618,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 46
+        "y": 53
       },
       "id": 3,
       "interval": null,
@@ -2582,7 +2691,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 46
+        "y": 53
       },
       "id": 9,
       "interval": null,
@@ -2683,7 +2792,7 @@
         "h": 10,
         "w": 7,
         "x": 9,
-        "y": 46
+        "y": 53
       },
       "id": 56,
       "options": {
@@ -2732,7 +2841,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 46
+        "y": 53
       },
       "hiddenSeries": false,
       "id": 11,
@@ -2840,7 +2949,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 51
+        "y": 58
       },
       "id": 4,
       "interval": null,
@@ -2930,7 +3039,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 51
+        "y": 58
       },
       "id": 6,
       "interval": null,
@@ -3019,7 +3128,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 51
+        "y": 58
       },
       "id": 5,
       "interval": null,
@@ -3099,7 +3208,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 51
+        "y": 58
       },
       "hiddenSeries": false,
       "id": 14,
@@ -3197,7 +3306,7 @@
         "h": 12,
         "w": 16,
         "x": 0,
-        "y": 56
+        "y": 63
       },
       "hiddenSeries": false,
       "id": 51,
@@ -3306,7 +3415,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 56
+        "y": 63
       },
       "hiddenSeries": false,
       "id": 8,
@@ -3406,7 +3515,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 61
+        "y": 68
       },
       "hiddenSeries": false,
       "id": 10,
@@ -3506,7 +3615,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 66
+        "y": 73
       },
       "hiddenSeries": false,
       "id": 42,
@@ -3598,7 +3707,7 @@
         "h": 13,
         "w": 16,
         "x": 0,
-        "y": 68
+        "y": 75
       },
       "hiddenSeries": false,
       "id": 13,
@@ -3712,7 +3821,7 @@
         "h": 10,
         "w": 8,
         "x": 16,
-        "y": 71
+        "y": 78
       },
       "hiddenSeries": false,
       "id": 53,
@@ -3797,7 +3906,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 88
       },
       "id": 34,
       "panels": [],
@@ -3846,7 +3955,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 82
+        "y": 89
       },
       "id": 15,
       "interval": null,
@@ -3915,7 +4024,7 @@
         "h": 7,
         "w": 4,
         "x": 4,
-        "y": 82
+        "y": 89
       },
       "id": 16,
       "interval": null,
@@ -3971,7 +4080,7 @@
         "h": 18,
         "w": 16,
         "x": 8,
-        "y": 82
+        "y": 89
       },
       "hiddenSeries": false,
       "id": 25,
@@ -4130,7 +4239,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 89
+        "y": 96
       },
       "id": 17,
       "interval": null,
@@ -4207,7 +4316,7 @@
         "h": 7,
         "w": 4,
         "x": 4,
-        "y": 89
+        "y": 96
       },
       "id": 18,
       "interval": null,
@@ -4312,7 +4421,7 @@
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 96
+        "y": 103
       },
       "id": 57,
       "options": {
@@ -4361,7 +4470,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 100
+        "y": 107
       },
       "hiddenSeries": false,
       "id": 20,
@@ -4461,7 +4570,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 100
+        "y": 107
       },
       "hiddenSeries": false,
       "id": 19,
@@ -4559,7 +4668,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 109
+        "y": 116
       },
       "hiddenSeries": false,
       "id": 21,
@@ -4658,7 +4767,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 109
+        "y": 116
       },
       "hiddenSeries": false,
       "id": 22,
@@ -4745,7 +4854,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 118
+        "y": 125
       },
       "id": 35,
       "panels": [],
@@ -4781,7 +4890,7 @@
         "h": 6,
         "w": 3,
         "x": 0,
-        "y": 119
+        "y": 126
       },
       "id": 37,
       "interval": null,
@@ -4915,7 +5024,7 @@
         "h": 6,
         "w": 7,
         "x": 3,
-        "y": 119
+        "y": 126
       },
       "id": 59,
       "options": {
@@ -4964,7 +5073,7 @@
         "h": 8,
         "w": 14,
         "x": 10,
-        "y": 119
+        "y": 126
       },
       "hiddenSeries": false,
       "id": 30,
@@ -5072,7 +5181,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 125
+        "y": 132
       },
       "id": 38,
       "interval": null,
@@ -5155,7 +5264,7 @@
         "h": 8,
         "w": 7,
         "x": 3,
-        "y": 125
+        "y": 132
       },
       "hiddenSeries": false,
       "id": 39,
@@ -5279,7 +5388,7 @@
         "h": 7,
         "w": 7,
         "x": 10,
-        "y": 127
+        "y": 134
       },
       "hiddenSeries": false,
       "id": 32,
@@ -5377,7 +5486,7 @@
         "h": 7,
         "w": 7,
         "x": 17,
-        "y": 127
+        "y": 134
       },
       "hiddenSeries": false,
       "id": 31,
@@ -5485,7 +5594,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 130
+        "y": 137
       },
       "id": 45,
       "interval": null,
@@ -5568,7 +5677,7 @@
         "h": 7,
         "w": 7,
         "x": 3,
-        "y": 133
+        "y": 140
       },
       "hiddenSeries": false,
       "id": 40,
@@ -5674,7 +5783,7 @@
         "h": 6,
         "w": 7,
         "x": 10,
-        "y": 134
+        "y": 141
       },
       "hiddenSeries": false,
       "id": 28,
@@ -5773,7 +5882,7 @@
         "h": 6,
         "w": 7,
         "x": 17,
-        "y": 134
+        "y": 141
       },
       "hiddenSeries": false,
       "id": 29,
@@ -5881,7 +5990,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 135
+        "y": 142
       },
       "id": 27,
       "interval": null,
@@ -5992,5 +6101,5 @@
   "timezone": "browser",
   "title": "AMQ Streams Dashboard",
   "uid": "vi9qV4NGk",
-  "version": 4
+  "version": 5
 }
