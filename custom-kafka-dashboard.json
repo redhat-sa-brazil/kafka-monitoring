@@ -16,13 +16,14 @@
   "editable": true,
   "gnetId": 11285,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1597972851608,
+  "id": 21,
+  "iteration": 1598382630985,
   "links": [],
   "panels": [
     {
       "cacheTimeout": null,
       "datasource": null,
+      "description": "Number of topics",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -73,10 +74,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
-          "expr": "count(kafka_topic_partitions{topic=~\"$topic\"})",
+          "expr": "count(kafka_topic_partitions{job=\"kafka-exporter\", topic=~\"$topic\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -92,6 +93,7 @@
     {
       "cacheTimeout": null,
       "datasource": null,
+      "description": "Number of partitions ",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -142,10 +144,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
-          "expr": "sum(kafka_topic_partitions{topic=~\"$topic\"})",
+          "expr": "sum(kafka_topic_partitions{job=\"kafka-exporter\",topic=~\"$topic\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -161,6 +163,7 @@
     {
       "cacheTimeout": null,
       "datasource": null,
+      "description": "Number of Replicas",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -211,10 +214,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
-          "expr": "sum(kafka_topic_partition_replicas{topic=~\"$topic\"})",
+          "expr": "sum(kafka_topic_partition_replicas{job=\"kafka-exporter\", topic=~\"$topic\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -292,7 +295,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "count(kafka_server_replicamanager_leadercount > 0)",
@@ -375,12 +378,14 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
-          "expr": "sum(kafka_topic_partition_under_replicated_partition{topic=~\"$topic\"})",
+          "expr": "sum(kafka_topic_partition_under_replicated_partition{job=\"kafka-exporter\", topic=~\"$topic\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -449,12 +454,14 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
-          "expr": "sum(kafka_cluster_partition_underminisr{topic=~\"$topic\"})",
+          "expr": "sum(kafka_cluster_partition_underminisr{job=\"kafka-jmx-exporter\",topic=~\"$topic\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -525,7 +532,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(kafka_controller_kafkacontroller_activecontrollercount)",
@@ -603,7 +610,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(kafka_cluster_partition_atminisr{topic=~\"$topic\"})",
@@ -674,7 +681,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(kafka_topic_partition_in_sync_replica{topic=~\"$topic\"})",
@@ -747,12 +754,14 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
-          "expr": "count(kafka_topic_partition_leader_is_preferred{topic=~\"$topic\"}<1)",
+          "expr": "count(kafka_topic_partition_leader_is_preferred{job=\"kafka-exporter\", topic=~\"$topic\"}<1)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -767,6 +776,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "Current Offset of a Broker at Topic/Partition",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -803,7 +813,7 @@
       "nullPointMode": "connected",
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -813,8 +823,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(kafka_topic_partition_current_offset{topic=~\"$topic\"}[1m])) by (topic)",
+          "expr": "sum(rate(kafka_topic_partition_current_offset{job=\"kafka-exporter\", topic=~\"$topic\"}[1m])) by (topic)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{topic}}",
           "refId": "B"
@@ -840,6 +851,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6425",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -848,6 +860,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6426",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -867,6 +880,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "Current Offset of a ConsumerGroup at Topic/Partition",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -903,7 +917,7 @@
       "nullPointMode": "connected",
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -913,7 +927,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(delta(kafka_consumergroup_current_offset{consumergroup=~\"$consumergroup\",topic=~\"$topic\"}[1m])/60) by (consumergroup, topic)",
+          "expr": "sum(delta(kafka_consumergroup_current_offset{job=\"kafka-exporter\", consumergroup=~\"$consumergroup\",topic=~\"$topic\"}[1m])/60) by (consumergroup, topic)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -941,6 +955,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6500",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -949,6 +964,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6501",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -968,6 +984,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "Current Approximate Lag of a ConsumerGroup at Topic/Partition",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1003,7 +1020,7 @@
       "nullPointMode": "connected",
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1013,7 +1030,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kafka_consumergroup_lag{consumergroup=~\"$consumergroup\",topic=~\"$topic\"}) by (consumergroup, topic) ",
+          "expr": "sum(kafka_consumergroup_lag{job=\"kafka-exporter\", consumergroup=~\"$consumergroup\",topic=~\"$topic\"}) by (consumergroup, topic) ",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1042,6 +1059,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6574",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -1050,6 +1068,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6575",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1100,7 +1119,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1110,7 +1129,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg by (consumergroup,topic) (kafka_consumergroup_lag{consumergroup=~\"$consumergroup\",topic=~\"$topic\"})",
+          "expr": "avg by (consumergroup,topic) (kafka_consumergroup_lag{job=\"kafka-exporter\", consumergroup=~\"$consumergroup\",topic=~\"$topic\"})",
           "hide": true,
           "instant": false,
           "interval": "",
@@ -1144,6 +1163,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6720",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1152,6 +1172,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6721",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1171,6 +1192,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "kafka_consumergroup_current_offset: Current Offset of a ConsumerGroup at Topic/Partition\nkafka_consumergroup_lag: Current Approximate Lag of a ConsumerGroup at Topic/Partition",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1202,7 +1224,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1212,7 +1234,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg by (topic) (sum by (topic, instance) (delta(kafka_consumergroup_current_offset{consumergroup=~\"$consumergroup\", topic=~\"$topic\"}[1m]) / 60))",
+          "expr": "avg by (topic) (sum by (topic, instance) (delta(kafka_consumergroup_current_offset{job=\"kafka-exporter\",consumergroup=~\"$consumergroup\", topic=~\"$topic\"}[1m]) / 60))",
           "hide": true,
           "instant": false,
           "interval": "",
@@ -1220,7 +1242,7 @@
           "refId": "A"
         },
         {
-          "expr": "avg by (consumergroup,topic,partition) (kafka_consumergroup_lag{consumergroup=~\"$consumergroup\", topic=~\"$topic\"})",
+          "expr": "avg by (consumergroup,topic,partition) (kafka_consumergroup_lag{job=\"kafka-exporter\", consumergroup=~\"$consumergroup\", topic=~\"$topic\"})",
           "interval": "",
           "legendFormat": "Partition {{ partition }}",
           "refId": "B"
@@ -1246,6 +1268,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6797",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1254,6 +1277,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6798",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1304,7 +1328,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1314,14 +1338,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg by (topic,consumergroup) (rate(kafka_server_brokertopicmetrics_bytesin_total{topic=~\"$topic\"}[5m]))",
+          "expr": "avg by (topic,consumergroup) (rate(kafka_server_brokertopicmetrics_bytesin_total{job=\"kafka-jmx-exporter\", topic=~\"$topic\"}[5m]))",
           "instant": false,
           "interval": "",
           "legendFormat": "{{ topic }}  bytes IN",
           "refId": "A"
         },
         {
-          "expr": "avg by (topic,consumergroup) (rate(kafka_server_brokertopicmetrics_bytesout_total{topic=~\"$topic\"}[5m]))",
+          "expr": "avg by (topic,consumergroup) (rate(kafka_server_brokertopicmetrics_bytesout_total{job=\"kafka-jmx-exporter\", topic=~\"$topic\"}[5m]))",
           "interval": "",
           "legendFormat": "{{ topic }}  bytes OUT",
           "refId": "B"
@@ -1347,6 +1371,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6901",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -1355,6 +1380,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6902",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1536,7 +1562,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "expr": "sum(kafka_consumergroup_lag{consumergroup=~\"$consumergroup\",topic=~\"$topic\"}) by (consumergroup,topic) > 50",
@@ -1556,6 +1582,7 @@
     {
       "columns": [],
       "datasource": null,
+      "description": "Number of partitions for the Topic",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1622,9 +1649,10 @@
       ],
       "targets": [
         {
-          "expr": "sum(kafka_topic_partitions{topic=~\"$topic\"}) by (topic)",
+          "expr": "sum(kafka_topic_partitions{job=\"kafka-exporter\", topic=~\"$topic\"}) by (topic)",
           "format": "table",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{topic}}",
           "refId": "A"
@@ -1639,6 +1667,7 @@
     {
       "columns": [],
       "datasource": null,
+      "description": "Current Offset of a Broker at Topic/Partition",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1705,9 +1734,10 @@
       ],
       "targets": [
         {
-          "expr": "sum(kafka_topic_partition_current_offset{topic=~\"$topic\"}) by (partition,topic)",
+          "expr": "sum(kafka_topic_partition_current_offset{job=\"kafka-exporter\", topic=~\"$topic\"}) by (partition,topic)",
           "format": "table",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{topic}}",
           "refId": "A"
@@ -1722,6 +1752,7 @@
     {
       "columns": [],
       "datasource": null,
+      "description": "Oldest Offset of a Broker at Topic/Partition",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1788,9 +1819,10 @@
       ],
       "targets": [
         {
-          "expr": "sum(kafka_topic_partition_oldest_offset{topic=~\"$topic\"}) by (partition,topic)",
+          "expr": "sum(kafka_topic_partition_oldest_offset{job=\"kafka-exporter\",topic=~\"$topic\"}) by (partition,topic)",
           "format": "table",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{topic}}",
           "refId": "A"
@@ -1810,22 +1842,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
+          "custom": {}
         },
         "overrides": []
       },
@@ -1852,7 +1869,7 @@
       "linewidth": 1,
       "nullPointMode": "connected",
       "percentage": false,
-      "pluginVersion": "7.1.4",
+      "pluginVersion": "7.1.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1890,7 +1907,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Panel Title",
+      "title": "Node Exporter - Environment",
       "tooltip": {
         "shared": false,
         "sort": 0,
@@ -1908,6 +1925,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:6992",
           "decimals": null,
           "format": "percent",
           "label": null,
@@ -1917,6 +1935,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:6993",
           "decimals": null,
           "format": "percent",
           "label": null,
@@ -1932,7 +1951,7 @@
       }
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 26,
   "style": "dark",
   "tags": [
@@ -1945,9 +1964,7 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -1975,9 +1992,7 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
